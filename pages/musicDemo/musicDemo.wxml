@@ -1,0 +1,68 @@
+<!--pages/musicDemo/musicDemo.wxml-->
+
+<view class='audio-container'>
+    <!-- 音频 -->
+  <audio src="{{adudioSrc}}" id="myAudio" bindtimeupdate="audioUpdata" currentTime="{{nowTime}}" startTime="{{beginTime}}" 
+  duration="{{endTime}}" ></audio>
+
+  <view class='aud-mod'>
+    <view class='aud-poster'>
+      <image src='{{img_url}}/aud-poster-tpp.png' class="img {{isOpen?'playing':''}}"></image>
+    </view>
+    <!-- 播放 -->
+    <view class='mod' style="background-image:url('{{img_url}}/play-btn.png')" bindtap="audioPlay" wx:if="{{!isOpen}}">
+    </view>
+    <!-- 暂停 -->
+    <view class='mod' style="background-image:url('{{img_url}}/pause-btn.png')" bindtap="audioPause" wx:if="{{isOpen}}">
+    </view>
+
+  </view>
+
+  <view class='aud-kong'>
+    <!-- 控制滑块，滑块的 -->
+    <movable-area class="mv-area slderArea" scale-area  >
+      <movable-view class='mv-view slderQiu' bindchange="onSliderProgress" direction="horizontal" disabled="{{disabled}}" 
+       data-alltime="{{max}}" data-curtime="{{nowTime}}"  style='width:{{mWidth}}%; left:{{sliderX}}%'>
+        <view class='kongTime' >
+          <label class='start-time'>{{starttime}}</label>/
+          <label class='all-time'>{{duration}}</label>
+        </view>
+
+    </movable-view>
+
+    <view class='aud-chang' >
+      <view class='cur-hua' style='width:{{sliderX}}%'></view>
+    </view>
+
+    <view class='aud-progress' >
+      <slider class="slider slderArea" bindchange="sliderChange"  value="{{offset}}" max="{{max}}" block-color="#f00" selected-color="#ff614a" backgroundColor='#c2c2c2'  block-size="28" step="1" data-left="{{sliderX}}"  data-alltime="{{max}}" data-curtime="{{nowTime}}">
+      </slider>
+    </view>
+
+  </movable-area>
+
+  <!-- 快退 -->
+  <view class='backTime' data-nowtime ="{{nowTime}}" data-begintime="{{beginTime}}" data-endtime="{{endTime}}"
+   bindtap='backTime'>
+    <icon class='i' style="background-image:url('{{img_url}}/back-time-btn.png')"></icon>
+    <label class='t'>快退</label>
+  </view>
+  <!-- 快进 -->
+  <view class='forwardTime' data-nowtime ="{{nowTime}}" data-begintime="{{beginTime}}" data-endtime="{{endTime}}" 
+  bindtap='forwardTime'>
+    <icon class='i' style="background-image:url('{{img_url}}/foward-time-btn.png')"></icon>
+    <!-- <label class='t'>快进</label> -->
+  </view>
+
+</view>
+
+
+</view>
+
+
+<view class='explain'>
+  <view class='pp'>已滑动长度：{{sliderX}}%</view>
+  <view class='pp'>已播放时间：{{nowTime}}s</view>
+  <view class='pp'>总时间：{{max}}s</view>
+</view>
+
