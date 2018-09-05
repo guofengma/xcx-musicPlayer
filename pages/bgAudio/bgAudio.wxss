@@ -1,0 +1,35 @@
+/* pages/bgAudio/bgAudio.wxss */
+page{ background-color: #f5f5f5; }
+.audio-container{ width: 100%; height: auto; overflow: hidden; margin-top: 20rpx;}
+.audio-container .aud-mod{  width: 100%;   text-align: center;}
+.aud-mod{ width: 100%; height: 280rpx; overflow: hidden; position: relative;}
+.aud-poster{ width: 280rpx; height: 280rpx; border-radius: 50%;  overflow: hidden; margin: 0 auto;}
+.aud-poster .img{ width: 100%; height: 100%;  }
+.aud-poster .img.playing{ animation:circle 10s infinite linear;}
+@keyframes circle{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+.aud-mod .mod{ width: 100rpx; height: 100rpx; background-repeat: no-repeat; background-size: cover;
+ position: absolute;  left: 50%;top: 50%;  transform: translate(-50%,-50%);}
+.aud-handel{ width: 100%; height: 80rpx; position: relative; margin-top: 30rpx;}
+.aud-handel .forwardTime,.aud-handel .backTime{ width:46rpx; height: 80rpx; text-align: center; position: absolute; top: 0; }
+.aud-handel .forwardTime{ right: 35rpx;}
+.aud-handel .backTime{ left: 35rpx; }
+.aud-handel .forwardTime .i,.aud-handel .backTime .i{ width: 46rpx; height: 42rpx; background-repeat: no-repeat; background-size: cover;}
+.aud-handel .forwardTime .t,.aud-handel .backTime .t{ color: #333; font-size: 22rpx; display: block; line-height: 1;}
+.sliderMod{ width: 70%; height: 100%; position: absolute; left: 50%; top:0; transform: translateX(-50%); }
+.sliderMod .sliderLine{ width: 100%; height: 100%; position: absolute; }
+.sliderMod .sliderLine .aud-chang{ width: 100%; height: 6rpx; background-color: rgb(199, 199, 199); 
+border-radius: 20rpx; overflow: hidden; position: relative; margin-top: 25rpx; }
+.sliderMod .sliderLine .aud-chang .cur-hua{ width: 0; height: 6rpx; background-color:#ff614a; position: absolute; left: 0; top: 0;}
+.sliderMod .sliderBall{ width: 22%;height: 32rpx; line-height: 32rpx; text-align: center; margin-top: 10rpx;
+ font-size: 16rpx; color: #fff; background: #6c6c6c; border-radius: 16rpx; position: absolute; left: 0; top: 0; z-index: 2; }
+
+.movable-area{ width: 100%; height:50rpx; background-color: rgb(199, 199, 199); position:absolute; top: 60rpx; }
+.movable-area .movable-view{ width:22%;  height: 50rpx;background:rgb(0, 153, 255); 
+color: #fff; font-size: 18rpx; text-align: center; position: absolute; transform:translateX(0)!important;}
+
+.rest-play{ margin-top: 50rpx; width: 200rpx; font-size: 30rpx; background-color: #fff;}
+
+.the-monitor{ padding: 20rpx; color: #333; font-size: 28rpx;}

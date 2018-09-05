@@ -51,7 +51,7 @@
   <view class='forwardTime' data-nowtime ="{{nowTime}}" data-begintime="{{beginTime}}" data-endtime="{{endTime}}" 
   bindtap='forwardTime'>
     <icon class='i' style="background-image:url('{{img_url}}/foward-time-btn.png')"></icon>
-    <!-- <label class='t'>快进</label> -->
+    <label class='t'>快进</label>
   </view>
 
 </view>
@@ -65,4 +65,23 @@
   <view class='pp'>已播放时间：{{nowTime}}s</view>
   <view class='pp'>总时间：{{max}}s</view>
 </view>
+
+<!-- ********************** -->
+
+
+<view class="top">min 0 max 100</view>
+  <view class="des">{{low}}-{{heigh}}</view>
+  <view class="zy-slider">
+      <zy-slider minValue="0" maxValue="100" min="0" max="100" bind:lowValueChange="lowValueChangeAction"
+       />
+  </view>
+
+
+
+
+
+
+
+
+
 

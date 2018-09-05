@@ -1,5 +1,6 @@
 // pages/musicDemo/musicDemo.js
 
+
 Page({
 
   /**
@@ -9,10 +10,10 @@ Page({
     img_url: '../images', //图片地址
 
     // 音频模块：
-    adudioSrc: 'http://dl.stream.qqmusic.qq.com/C400003fJsVr1lXg2K.m4a?vkey=2EA28F4630DDF6CC0406796CA33778475A23BF1B14ACD049415237249EC47B87B659910375F9DBB1663160CB7E189408FA2AD3CBEB8C9B9E&guid=1908569250&uin=494535607&fromtag=66',
+    adudioSrc: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46',
     isOpen: false,//播放开关
     starttime: '00:00', //正在播放时长
-    duration: '04:13', //总时长
+    duration: '06:41', //总时长
     nowTime:'0',  //当前时间
     beginTime:'0', //开始时间
     endTime:'0',   //结束时间
@@ -20,6 +21,23 @@ Page({
     sliderX:0,        //滑锁距离
     mWidth:20,  //滑块的宽度比
 
+    low: 0,
+    heigh: 100,
+
+
+  },
+
+  //
+  lowValueChangeAction: function (e) {
+    this.setData({
+      low: e.detail.lowValue
+    })
+  },
+
+  heighValueChangeAction: function (e) {
+    this.setData({
+      heigh: e.detail.heighValue
+    })
   },
 
  /**
@@ -29,7 +47,7 @@ Page({
     var that = this;
     //使用wx.createAudioContext 获取 audio
     that.audioCtx = wx.createAudioContext('myAudio');
-
+   
   },
 
   //开始播放
@@ -40,6 +58,7 @@ Page({
       isOpen: true,
       disabled:false
     })
+
   },
 
   //暂停播放
@@ -165,19 +184,6 @@ Page({
   },
 
 
-  //拖动状态
-  sliderChange: function (e) {
-    var that = this,
-      offset = parseInt(e.detail.value);
-    //设置时间
-    that.audioCtx.play();
-    that.setData({
-      isOpen: true,
-      disabled: false
-    })
-    that.audioCtx.seek(offset);
-
-  },
 
 
   //拖动状态

@@ -1,0 +1,69 @@
+<!--pages/bgAudio/bgAudio.wxml-->
+<view class='audio-container'>
+  <view class='aud-mod'>
+    <view class='aud-poster'>
+      <image src='{{img_url}}/aud-poster-tpp.png' class="img {{isOpen?'playing':''}}"></image>
+    </view>
+    <!-- 播放 -->
+    <view class='mod' style="background-image:url('{{img_url}}/play-btn.png')" bindtap="listenerButtonPlay" wx:if="{{!isOpen}}">
+    </view>
+    <!-- 暂停 -->
+    <view class='mod' style="background-image:url('{{img_url}}/pause-btn.png')" bindtap="listenerButtonPause" wx:if="{{isOpen}}">
+    </view>
+  </view>
+
+
+  <view class='aud-handel'>
+    <!-- 快退 -->
+    <view class='backTime' data-nowtime="{{nowtime}}" data-alltime="{{alltime}}" bindtap='backTime'>
+      <icon class='i' style="background-image:url('{{img_url}}/back-time-btn.png')"></icon>
+      <label class='t'>快退</label>
+    </view>
+    <!-- 快进 -->
+    <view class='forwardTime' data-nowtime="{{nowtime}}" data-alltime="{{alltime}}" bindtap='addTime's>
+      <icon class='i' style="background-image:url('{{img_url}}/foward-time-btn.png')"></icon>
+      <label class='t'>快进</label>
+    </view>
+
+    <!-- 操作模块 -->
+    <view class='sliderMod'>
+      <!-- 球 -->
+      <view class='sliderBall' style='width:{{mWidth}}%; left:{{mState==0?x:x2}}%'>
+        <label class='start-time'>{{curtime}}</label>/
+        <label class='all-time'>{{endtime}}</label>
+      </view>
+      <!-- 线 -->
+      <view class='sliderLine'>
+        <view class='aud-chang'>
+          <view class='cur-hua' style='width:{{mState==0?x:x2}}%'></view>
+        </view>
+      </view>
+
+      <!-- 移动模块 -->
+      <movable-area class="movable-area" style="width:{{moveAreaWidth}}px">
+        <movable-view class='movable-view' x="{{mx}}"  direction="horizontal" bindchange="onChange"
+      bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove' disabled="{{disabled}}" style='width:{{mWidth}}%; left:{{mState==0?x:x2}}%'>
+        </movable-view>
+      </movable-area>
+
+
+    </view>
+
+
+  </view>
+
+<button class='rest-play' bindtap='restPlay'>重置</button>
+
+ </view>
+
+
+<view class='the-monitor'>
+  <view>当前时间-nowtime：{{nowtime}}s </view>
+  <view>总时间-alltime：{{alltime}}s</view>
+  <view>当前时间格式-curtime：{{curtime}}</view>
+  <view>拖动的距离-tuoX：{{tuoX}}</view>
+  <view>模块总长-moveAreaWidth：{{moveAreaWidth}}px</view>
+  <view>拖动块的距离-mx：{{mx}}</view>
+  <view>移动的比例-x：{{x}}%</view>
+  <view>拖动的比例-x2：{{x2}}%</view>
+</view>
