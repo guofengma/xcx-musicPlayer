@@ -76,6 +76,12 @@ Page({
       backgroundAudioManager.startTime = 0;
       //时间格式 00：00
       that.timeTransform(0);
+
+      if (that.data.alltime >= 3600) {
+        that.setData({
+          curtime: '00:00:00'
+        })
+      }
     })
     
     //监听播放进度
@@ -256,18 +262,33 @@ Page({
   //重置
   restPlay: function (e) {
     var that = this;
-    if (that.data.isOpen) {
+    //调用播放按钮
+    that.listenerButtonPlay();
+
+    that.setData({
+      isOpen: true,
+      nowtime: 0,
+      x: 0,
+      x2: 0,
+      mx: 0,
+      tuoX: 0
+    })
+
+    if (that.data.alltime >= 3600) {
       that.setData({
-        nowtime: 0,
-        x: 0,
-        x2: 0,
-        mx: 0,
-        tuoX: 0
+        curtime: '00:00:00',
+        curtime2: '00:00:00'
       })
-      backgroundAudioManager.seek(0);
-      //播放时间
-      backgroundAudioManager.startTime = 0;
+    } else {
+      that.setData({
+        curtime: '00:00',
+        curtime2: '00:00'
+      })
     }
+
+    backgroundAudioManager.seek(0);
+    //播放时间
+    backgroundAudioManager.startTime = 0; 
   },
 
   //移动距离
@@ -306,6 +327,9 @@ Page({
 
   //秒数转换时分秒
   timeTransform(seconds, seconds2) {
+    var allSeconds = seconds2;  //总长
+
+    seconds = Math.round(seconds)
     var that = this;
     var hh, mm, ss;
     //传入的时间为空或小于0
@@ -330,9 +354,15 @@ Page({
     }
 
     //当前时间
-    that.setData({
-      curtime: mm + ":" + ss,
-    })
+    if (allSeconds >= 3600) {
+      that.setData({
+        curtime: hh + ":" + mm + ":" + ss
+      })
+    } else {
+      that.setData({
+        curtime: mm + ":" + ss
+      })
+    }
 
     // return hh + ":" + mm + ":" + ss;
 
@@ -362,10 +392,17 @@ Page({
     }
 
     //当前时间
-    that.setData({
-      endtime: mm2 + ":" + ss2
-    })
 
+    //当前时间
+    if (allSeconds >= 3600) {
+      that.setData({
+        endtime: hh2 + ":" + mm2 + ":" + ss2
+      })
+    } else {
+      that.setData({
+        endtime: mm2 + ":" + ss2
+      })
+    }
     // return hh2 + ":" + mm2 + ":" + ss2;
 
   },
