@@ -15,7 +15,6 @@ Page({
     disabled: true,  //是否禁止组件拖动 
     nowtime:0,     //当前时间s
     alltime:401,    //总时长s
-
     curtime:'00:00',  //当前时间格式
     endtime: '06:41',  //总时间格式
     x: 0, //自动滑动比例 %
@@ -25,6 +24,8 @@ Page({
     moveAreaWidth: 270, //滑线长px
     mState: 0, // 监听是否手指拖动的状态 0：非手指 1：手指
     mWidth: 22,  //滑块的宽度比
+    curtime2:'00:00',
+    nowtime2:0
   },
 
   
@@ -105,7 +106,6 @@ Page({
   },
 
   //拖动组件
-  //拖动组件
   onChange: function (e) {
     var that = this;
     var v = e.detail.x;  //拖动的距离
@@ -137,15 +137,37 @@ Page({
     // 滑动时记录比例x2
     var x2 = be * 100 * (1 - (that.data.mWidth / 100));
 
+    var seconds = n
+
+    var hh, mm, ss;
+    //传入的时间为空或小于0
+    if (seconds == null || seconds < 0) {
+      return;
+    }
+    //得到小时
+    hh = seconds / 3600 | 0;
+    seconds = parseInt(seconds) - hh * 3600;
+    if (parseInt(hh) < 10) {
+      hh = "0" + hh;
+    }
+    //得到分
+    mm = seconds / 60 | 0;
+    //得到秒
+    ss = parseInt(seconds) - mm * 60;
+    if (parseInt(mm) < 10) {
+      mm = "0" + mm;
+    }
+    if (ss < 10) {
+      ss = "0" + ss;
+    }
+
     that.setData({
-      nowtime: n,
+      nowtime2: n,
       mState: 1,
       x2: x2,
-      mx: that.data.tuoX
+      mx: that.data.tuoX,
+      curtime2: mm + ":" + ss
     })
-
-    //转换时间格式
-    that.timeTransform(that.data.nowtime, that.data.alltime);
 
   },
 
@@ -157,7 +179,7 @@ Page({
     var be = that.data.tuoX / (that.data.moveAreaWidth - that.data.moveAreaWidth * (that.data.mWidth / 100));
     var n = that.data.alltime * be;
     that.setData({
-      nowtime: n,
+      nowtime:n,
       mState: 0,
       x: that.data.x2,       //结束把x2比例赋值给x
     })
@@ -309,7 +331,7 @@ Page({
 
     //当前时间
     that.setData({
-      curtime: mm + ":" + ss
+      curtime: mm + ":" + ss,
     })
 
     // return hh + ":" + mm + ":" + ss;

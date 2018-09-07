@@ -33,8 +33,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "bgAudio",
+					"pathName": "pages/bgAudio/bgAudio",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "xx",
+					"pathName": "pages/xx/xx"
+				}
+			]
 		}
 	}
 }

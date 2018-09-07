@@ -20,7 +20,7 @@
       <label class='t'>快退</label>
     </view>
     <!-- 快进 -->
-    <view class='forwardTime' data-nowtime="{{nowtime}}" data-alltime="{{alltime}}" bindtap='addTime's>
+    <view class='forwardTime' data-nowtime="{{nowtime}}" data-alltime="{{alltime}}" bindtap='addTime'>
       <icon class='i' style="background-image:url('{{img_url}}/foward-time-btn.png')"></icon>
       <label class='t'>快进</label>
     </view>
@@ -29,7 +29,7 @@
     <view class='sliderMod'>
       <!-- 球 -->
       <view class='sliderBall' style='width:{{mWidth}}%; left:{{mState==0?x:x2}}%'>
-        <label class='start-time'>{{curtime}}</label>/
+        <label class='start-time'>{{mState==0?curtime:curtime2}}</label>/
         <label class='all-time'>{{endtime}}</label>
       </view>
       <!-- 线 -->
@@ -58,9 +58,14 @@
 
 
 <view class='the-monitor'>
-  <view>当前时间-nowtime：{{nowtime}}s </view>
   <view>总时间-alltime：{{alltime}}s</view>
+
+  <view>当前时间-nowtime：{{nowtime}}s </view>
+  <view>当前时间-nowtim2e：{{nowtime2}}s </view>
+
   <view>当前时间格式-curtime：{{curtime}}</view>
+  <view>当前时间格式-curtime2：{{curtime2}}</view>
+
   <view>拖动的距离-tuoX：{{tuoX}}</view>
   <view>模块总长-moveAreaWidth：{{moveAreaWidth}}px</view>
   <view>拖动块的距离-mx：{{mx}}</view>
